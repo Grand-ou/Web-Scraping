@@ -25,7 +25,12 @@ for i in range(3):
     total_coffee += daily_coffee
     total_sugar += daily_sugar
 
-if  total_coffee > 700 or total_sugar > 150:
+# if  total_coffee > 700 or total_sugar > 150:
+#     result = '不可'
+def total(total_coffee, total_sugar):
+    if  total_coffee > 700 or total_sugar > 150:
+        return '不可'
+if total(total_coffee, total_sugar) == '不可':
     result = '不可'
 for i in range(3):
     if drink[i][1] > 99:
