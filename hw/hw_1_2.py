@@ -35,9 +35,12 @@ for i in range(3):
 # print (gpa, total_credits)
 if total_credits == 0:
     print('0.00')
-elif gpa / total_credits == int(gpa / total_credits):
-    print(str(int(gpa / total_credits)) + '.00')
+#elif gpa / total_credits == int(gpa / total_credits):
+#    print(str(int(gpa / total_credits)) + '.00')
 else:
-    print ((math.floor(gpa / total_credits * 100) / 100.0))
+    aa = gpa / total_credits
+    print(aa)
+    #print((gpa / total_credits) // 0.01 * 0.01)
+    print ((math.floor(aa * 100) / 100.0))
 
 
