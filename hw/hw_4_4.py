@@ -8,7 +8,7 @@ def check(coordinate, position, board):
         y += position[1]
         if x not in range(0, len(board)): return False
         if y not in range(0, len(board[0])): return False
-        # 檢查欲放入方塊位置是否已被填滿
+        # 檢查欲放入方塊位置是否已被填滿  
         if board[x][y] != 0 : return False
     return True
 
@@ -22,16 +22,18 @@ def clear(board):
             board.pop(cnt)
             board.insert(0, [0 for i in range(len(board[0]))])
             cnt += 1
+    return board
 
 def fall(coordinate, position, board):
     # 依次把選中的形狀往下一格直到觸底或是遇到其他方塊
-    move = 1
+    
     while check(coordinate, (position[0]+1, position[1]), board): position = (position[0]+1, position[1])
     for x,y in coordinate:
         # 更新桌面
         x += position[0]
         y += position[1]
         board[x][y] = 1
+    return board
 def print_board(board):
     for brd in board:
         for b in brd:
@@ -57,8 +59,8 @@ chess = {
 while True:
     try:
         line = input()
-        if line == 'e':
-            break
+        # if line == 'e':
+        #     break
         line = line.split(' ')
         #step 2 確認擺放位置是否超出範圍
         if not check(chess[line[0]], (0, int(line[1])), board):
@@ -73,16 +75,16 @@ while True:
         for c in left_or_right:
             #step 4 確認往右往左擺放位置是否成功，如果成功就紀錄，如果撞到東西就留在原地
             if c == "right":
-                if check(chess[line[0]], (0, int(line[1])+1), board): move+=1
+                if check(chess[line[0]], (0, int(line[1])+move+1), board): move+=1
             else:
-                if check(chess[line[0]], (0, int(line[1])-1), board): move-=1
+                if check(chess[line[0]], (0, int(line[1])+move-1), board): move-=1
         #step 4 把選中的方塊向左或右移動
         
         #step 5 使方塊下降到最下面
-        fall(chess[line[0]], (0, int(line[1])+move), board)
+        board = fall(chess[line[0]], (0, int(line[1])+move), board)
         # print_board(board)
-        #step 6 清除存在的橫排
-        clear(board)
+        # #step 6 清除存在的橫排
+        board = clear(board)
         # print_board(board)
     except EOFError:
         print_board(board)
