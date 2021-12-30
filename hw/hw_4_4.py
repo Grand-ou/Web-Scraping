@@ -44,6 +44,7 @@ def print_board(board):
 
 w = int(input())
 h = int(input())
+n = int(input())
 board = [[0 for i in range(w)] for j in range(h)]
 chess = {
         "I":[(0,0), (1,0), (2,0), (3,0)],
